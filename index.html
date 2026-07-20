@@ -166,6 +166,14 @@
         .modal-body {
             padding: 24px;
         }
+        @media (max-width: 767px) {
+            .modal-content img {
+                height: 180px;
+            }
+            .modal-body {
+                padding: 16px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-secondary-container selection:text-on-secondary-container">
@@ -184,10 +192,19 @@
 </div>
 <div class="flex items-center pr-margin-mobile md:pr-margin-desktop">
 <a class="hidden md:inline-block bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest px-4 py-2 hover:bg-secondary transition-colors duration-300" href="#kontak">Kontak</a>
-<button class="md:hidden text-primary pl-4">
-<span class="material-symbols-outlined">menu</span>
+<button class="md:hidden text-primary pl-4" onclick="toggleMobileMenu()">
+<span class="material-symbols-outlined" id="menu-icon">menu</span>
 </button>
 </div>
+</div>
+<div class="md:hidden fixed top-[52px] left-0 w-full bg-surface-container-high border-b border-outline-variant z-40 transition-all duration-300 overflow-hidden" id="mobile-menu" style="max-height: 0;">
+<nav class="flex flex-col py-4 px-margin-mobile gap-4">
+<a class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300" href="#tentang-saya" onclick="toggleMobileMenu()">Tentang</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300" href="#karya-terpilih" onclick="toggleMobileMenu()">Karya</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300" href="#pengalaman" onclick="toggleMobileMenu()">Pengalaman</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300" href="#" onclick="toggleMobileMenu()">Riwayat</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-secondary transition-colors duration-300" href="#kontak" onclick="toggleMobileMenu()">Kontak</a>
+</nav>
 </div>
 </header>
 <main>
@@ -207,7 +224,7 @@
             </p>
 
 </div>
-<div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal-up" style="transition-delay: 0.5s;">
+<div class="absolute bottom-8 left-0 right-0 flex justify-center reveal-up" style="transition-delay: 0.5s;">
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest flex flex-col items-center gap-4">
                 Eksplorasi
                 <span class="w-px h-12 bg-on-surface-variant"></span>
@@ -248,7 +265,7 @@
 <p>
                             Saya percaya bahwa setiap baris kode harus memiliki tujuan. Pendekatan saya menggabungkan ketelitian teknis dengan pemahaman mendalam tentang pengalaman pengguna untuk menghasilkan produk yang tidak hanya bekerja dengan baik, tetapi juga memberikan nilai nyata.
                         </p>
-<div class="pt-6 grid grid-cols-2 gap-6 border-t border-outline-variant">
+<div class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-outline-variant">
 <div>
 <h4 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface mb-4">Keahlian Utama</h4>
 <ul class="space-y-2 text-on-surface-variant">
@@ -277,17 +294,17 @@
 </div>
 
 </div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-y-16 gap-x-6">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-y-16 gap-x-6">
 <!-- Project 1 -->
 <article class="col-span-1 md:col-span-8 reveal-up relative group">
-<div class="absolute -left-6 -top-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+<div class="absolute -left-6 -top-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2 hidden md:block"></div>
 <div class="relative z-10 bg-surface-container aspect-video overflow-hidden group/image">
 <img alt="Platform Aura" class="w-full h-full object-cover" src="img/project1.png"/>
 <button class="absolute bottom-3 right-3 bg-primary text-white text-[10px] font-label-sm uppercase tracking-widest px-3 py-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded" onclick='openModal("Platform Aura", "Arsitektur Fintech", "img/project1.png", "Platform Aura adalah solusi fintech modern yang dibangun dengan arsitektur microservices untuk skalabilitas maksimum.", "#")'>Lihat Detail</button>
 </div>
-<div class="mt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+<div class="mt-4 md:mt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
 <div>
-<h3     class="font-headline-xl text-[28px] text-on-surface">Platform Aura</h3>
+<h3     class="font-headline-xl text-[22px] md:text-[28px] text-on-surface">Platform Aura</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Arsitektur Fintech</p>
 </div>
 <span class="font-body-md text-on-surface-variant border-b border-outline-variant pb-1">2023</span>
@@ -295,14 +312,14 @@
 </article>
 <!-- Project 2 -->
 <article class="col-span-1 md:col-span-4 reveal-up relative group" style="transition-delay: 0.1s;">
-<div class="absolute -right-6 -bottom-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
+<div class="absolute -right-6 -bottom-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2 hidden md:block"></div>
 <div class="relative z-10 bg-surface-container aspect-square overflow-hidden group/image">
 <img alt="Proyek Baru" class="w-full h-full object-cover" src="img/project2.png"/>
 <button class="absolute bottom-3 right-3 bg-primary text-white text-[10px] font-label-sm uppercase tracking-widest px-3 py-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded" onclick='openModal("Proyek Baru", "Dalam Pengembangan", "img/project2.png", "Proyek sedang dalam tahap pengembangan aktif.", "#")'>Lihat Detail</button>
 </div>
-<div class="mt-8 flex flex-col justify-between items-start gap-4 relative z-10">
+<div class="mt-4 md:mt-8 flex flex-col justify-between items-start gap-4 relative z-10">
 <div>
-<h3 class="font-headline-xl text-[20px] text-on-surface">Proyek Baru</h3>
+<h3 class="font-headline-xl text-[18px] md:text-[20px] text-on-surface">Proyek Baru</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Dalam Pengembangan</p>
 </div>
 <span class="font-body-md text-on-surface-variant border-b border-outline-variant pb-1">2024</span>
@@ -310,14 +327,14 @@
 </article>
 <!-- Project 3 -->
 <article class="col-span-1 md:col-span-4 md:col-start-2 reveal-up relative group" style="transition-delay: 0.2s;">
-<div class="absolute -left-6 -top-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+<div class="absolute -left-6 -top-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2 hidden md:block"></div>
 <div class="relative z-10 bg-surface-container aspect-[3/4] overflow-hidden group/image">
 <img alt="Proyek Baru" class="w-full h-full object-cover" src="img/project4.png"/>
 <button class="absolute bottom-3 right-3 bg-primary text-white text-[10px] font-label-sm uppercase tracking-widest px-3 py-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded" onclick='openModal("Proyek Baru", "Konsep Desain", "img/project4.png", "Proyek dalam tahap pengembangan konsep dan desain awal.", "#")'>Lihat Detail</button>
 </div>
-<div class="mt-8 flex flex-col justify-between items-start gap-4 relative z-10">
+<div class="mt-4 md:mt-8 flex flex-col justify-between items-start gap-4 relative z-10">
 <div>
-<h3 class="font-headline-xl text-[20px] text-on-surface">Proyek Baru</h3>
+<h3 class="font-headline-xl text-[18px] md:text-[20px] text-on-surface">Proyek Baru</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Konsep Desain</p>
 </div>
 <span class="font-body-md text-on-surface-variant border-b border-outline-variant pb-1">2024</span>
@@ -325,14 +342,14 @@
 </article>
 <!-- Project 4 -->
 <article class="col-span-1 md:col-span-7 reveal-up relative group" style="transition-delay: 0.3s;">
-<div class="absolute -right-6 -bottom-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2"></div>
+<div class="absolute -right-6 -bottom-6 w-full h-full border border-outline-variant z-0 transition-transform duration-500 group-hover:-translate-x-2 group-hover:-translate-y-2 hidden md:block"></div>
 <div class="relative z-10 bg-surface-container aspect-[4/3] overflow-hidden group/image">
 <img alt="Sistem Lumina" class="w-full h-full object-cover" src="img/project5.png"/>
 <button class="absolute bottom-3 right-3 bg-primary text-white text-[10px] font-label-sm uppercase tracking-widest px-3 py-2 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 rounded" onclick='openModal("Sistem Lumina", "Mesin Visualisasi Data", "img/project5.png", "Sistem Lumina adalah mesin visualisasi data canggih untuk analisis bisnis real-time.", "#")'>Lihat Detail</button>
 </div>
-<div class="mt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+<div class="mt-4 md:mt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
 <div>
-<h3     class="font-headline-xl text-[28px] text-on-surface">Sistem Lumina</h3>
+<h3     class="font-headline-xl text-[22px] md:text-[28px] text-on-surface">Sistem Lumina</h3>
 <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-2">Mesin Visualisasi Data</p>
 </div>
 <span class="font-body-md text-on-surface-variant border-b border-outline-variant pb-1">2022</span>
@@ -426,7 +443,7 @@ Mempelajari dasar-dasar pemrograman, pengembangan perangkat lunak, basis data, p
         </div>
 
 <div class="text-body-md font-body-md text-on-surface-variant">
-            © 2024 Alexander Vance — Dirancang dengan integritas.
+            © 2026 Audy Muzaki — Dirancang dengan integritas.
         </div>
 </div>
 </footer>
@@ -443,6 +460,18 @@ Mempelajari dasar-dasar pemrograman, pengembangan perangkat lunak, basis data, p
 </div>
 </div>
 <script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        if (menu.style.maxHeight === '0px' || menu.style.maxHeight === '') {
+            menu.style.maxHeight = '300px';
+            icon.textContent = 'close';
+        } else {
+            menu.style.maxHeight = '0px';
+            icon.textContent = 'menu';
+        }
+    }
+
     function openModal(title, category, imgSrc, description, demoLink) {
         document.getElementById('modal-title').textContent = title;
         document.getElementById('modal-category').textContent = category;
